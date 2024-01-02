@@ -1,3 +1,4 @@
+import gzip
 import logging
 import os
 from collections import defaultdict
@@ -10,7 +11,7 @@ logger = logging.getLogger()
 
 ALL_CODE = 'ALL'
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
-FILENAME = f'{DIR_PATH}/data/name_gender_data_all.pb'
+FILENAME = f'{DIR_PATH}/data/name_gender_data_all.pb.gz'
 
 @dataclass
 class NameGender:
@@ -87,7 +88,7 @@ def detect_gender(first_name: str, country_code: str = None) -> NameGender:
 def _read_records(filename):
     global _all_records
     _all_records = defaultdict(dict)
-    with open(filename, 'rb') as file:
+    with gzip.open(filename, 'rb') as file:
         while True:
             size_bytes = file.read(4)
             if not size_bytes:
