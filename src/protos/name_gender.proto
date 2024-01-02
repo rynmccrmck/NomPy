@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+message FirstNameGenderCount {
+  string country_code = 1;  // The ISO country code
+  string first_name = 2;    // The first name
+  int32 male_count = 3;     // The count of males with this first name
+  int32 female_count = 4;   // The count of females with this first name
+}
